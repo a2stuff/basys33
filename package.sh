@@ -5,10 +5,8 @@
 
 set -e
 
-IMGFILE="basis33.po"
-VOLNAME="basis33"
-
-
+IMGFILE="basys33.po"
+VOLNAME="basys33"
 
 # Create a new disk image.
 
