@@ -22,3 +22,5 @@ This repro includes a `BASIS.SYSTEM` implementation that takes the passed file a
     * ...
 
 And then Bitsy Bye will be able to launch them.
+
+If invoked on a file type other than $F1...$F4 it will QUIT back to ProDOS.

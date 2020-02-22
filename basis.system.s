@@ -69,6 +69,20 @@ reloc_start:
 launcher_filename:
         PASCAL_STRING "DOS3.3.LAUNCHER"
 
+.proc get_file_info_params
+param_count:    .byte   $A
+pathname:       .addr   filename_buffer
+access:         .byte   0
+file_type:      .byte   0
+aux_type:       .word   0
+storage_type:   .byte   0
+blocks_used:    .word   0
+mod_date:       .word   0
+mod_time:       .word   0
+create_date:    .word   0
+create_time:    .word   0
+.endproc
+
 .proc open_params
 param_count:    .byte   3
 path:           .addr   launcher_filename
@@ -96,6 +110,16 @@ pathname:       .addr   launcher_prefix
 
 
 newstart:
+
+;;; Check file type is in $F1...$F4
+
+        MLI_CALL GET_FILE_INFO, get_file_info_params
+        bcs     quit
+        lda     get_file_info_params::file_type
+        cmp     #$F1
+        bcc     quit
+        cmp     #$F4+1
+        bcs     quit
 
 ;;; Find DOS3.3.LAUNCHER
 
