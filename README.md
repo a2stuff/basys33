@@ -14,6 +14,7 @@
 This repro includes a `BASIS.SYSTEM` implementation that takes the passed file and invokes `DOS3.3.LAUNCHER` on it. It searches for `DOS3.3.LAUNCHER` starting in the directory containing the DOS 3.3 file, and then upwards. So you can create a disk like this:
 
 * `PRODOS`
+* `QUIT.SYSTEM`
 * `BASIS.SYSTEM`
 * `DOS.GAMES/`
     * `DOS3.3.LAUNCHER`
