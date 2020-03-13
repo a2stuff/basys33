@@ -5,14 +5,20 @@
 
 set -e
 
-IMGFILE="basys33.po"
+PACKDIR=$(mktemp -d)
+IMGFILE="out/basys33.po"
 VOLNAME="basys33"
 
-# Create a new disk image.
-
 rm -f "$IMGFILE"
-cadius CREATEVOLUME "$IMGFILE" "$VOLNAME" 140KB --quiet --no-case-bits
+cadius CREATEVOLUME "$IMGFILE" "$VOLNAME" 140KB --no-case-bits --quiet
 
-cp "basis.system.SYS" "basis.system#FF0000"
-cadius ADDFILE "$IMGFILE" "/$VOLNAME" "basis.system#FF0000" --quiet --no-case-bits
-rm -f "basis.system#FF0000"
+add_file () {
+    cp "$1" "$PACKDIR/$2"
+    cadius ADDFILE "$IMGFILE" "/$VOLNAME" "$PACKDIR/$2" --no-case-bits --quiet
+}
+
+add_file "out/basis.system.SYS" "basis.system#FF0000"
+
+rm -r "$PACKDIR"
+
+cadius CATALOG "$IMGFILE"

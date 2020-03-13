@@ -2,20 +2,27 @@
 CAFLAGS = --target apple2enh --list-bytes 0
 LDFLAGS = --config apple2-asm.cfg
 
-TARGETS = basis.system.SYS
-
-.PHONY: clean all
-all: $(TARGETS)
+OUTDIR = out
 
 HEADERS = $(wildcard *.inc)
 
+TARGETS = \
+	$(OUTDIR)/basis.system.SYS
+
+.PHONY: clean all
+all: $(OUTDIR) $(TARGETS)
+
+$(OUTDIR):
+	mkdir -p $(OUTDIR)
+
 clean:
-	rm -f *.o
+	rm -f $(OUTDIR)/*.o
+	rm -f $(OUTDIR)/*.list
 	rm -f $(TARGETS)
 
-%.o: %.s $(HEADERS)
+$(OUTDIR)/%.o: %.s $(HEADERS)
 	ca65 $(CAFLAGS) --listing $(basename $@).list -o $@ $<
 
-%.SYS: %.o
+$(OUTDIR)/%.SYS: $(OUTDIR)/%.o
 	ld65 $(LDFLAGS) -o $@ $<
 	xattr -wx prodos.AuxType '00 20' $@
