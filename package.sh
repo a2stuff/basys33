@@ -11,7 +11,7 @@ VOLNAME="basys33"
 # Create a new disk image.
 
 rm -f "$IMGFILE"
-cadius CREATEVOLUME "$IMGFILE" "$VOLNAME" 800KB --quiet --no-case-bits
+cadius CREATEVOLUME "$IMGFILE" "$VOLNAME" 140KB --quiet --no-case-bits
 
 cp "basis.system.SYS" "basis.system#FF0000"
 cadius ADDFILE "$IMGFILE" "/$VOLNAME" "basis.system#FF0000" --quiet --no-case-bits
