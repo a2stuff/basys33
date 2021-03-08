@@ -1,5 +1,7 @@
 # BASIS.SYSTEM for DOS 3.3 Launcher
 
+[![Build Status](https://travis-ci.org/a2stuff/basys33.svg?branch=main)](https://travis-ci.org/a2stuff/basys33)
+
 💾 Disk images can be found on the [Releases](https://github.com/a2stuff/basis33/releases) page 💾
 
 
