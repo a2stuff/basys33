@@ -28,4 +28,4 @@ jobs:
         uses: ncipollo/release-action@v1.8.6
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          artifacts: "out/prodos-path.po"
+          artifacts: "out/basys33.po"
