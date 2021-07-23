@@ -11,7 +11,7 @@ TARGETS = \
 
 XATTR := $(shell command -v xattr 2> /dev/null)
 
-.PHONY: clean all
+.PHONY: clean all package
 all: $(OUTDIR) $(TARGETS)
 
 $(OUTDIR):
@@ -21,6 +21,9 @@ clean:
 	rm -f $(OUTDIR)/*.o
 	rm -f $(OUTDIR)/*.list
 	rm -f $(TARGETS)
+
+package:
+	./package.sh
 
 $(OUTDIR)/%.o: %.s $(HEADERS)
 	ca65 $(CAFLAGS) --listing $(basename $@).list -o $@ $<
