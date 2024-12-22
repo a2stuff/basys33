@@ -19,7 +19,7 @@ kMaxSysLength   = ($BF00 - sys_start_address)
         .org    sys_start_address
 
 ;;; ============================================================
-;;; Interpeter protocol
+;;; Interpreter protocol
 ;;; http://www.easy68k.com/paulrsm/6502/PDOS8TRM.HTM#5.1.5.1
 
         jmp     start
